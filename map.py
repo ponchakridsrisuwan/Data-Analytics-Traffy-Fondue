@@ -145,7 +145,7 @@ updatemenus = [{
             'method': 'update',
             'args': [{'x': [data[(data[option] == selected_date) & (data['date'] == date)]
                                 ['date'] for selected_date in data[option].unique()]},
-                     {'title': f'date per {option} for {date}'}]
+                     {'title': f'ข้อมูล {option} จากวันที่ {date}'}]
         } for date in data['date'].unique()
     ],
     'direction': 'down',
@@ -163,7 +163,7 @@ updatemenus = [{
                 'method': 'update',
                 'args': [{'x': [data[(data[option] == selected_district) & (data['district'] == district)]
                                 ['district'] for selected_district in data[option].unique()]},
-                         {'title': f'district per {option} for {district}'}]
+                         {'title': f'ข้อมูล {option} จากเขต {district}'}]
             } for district in data['district'].unique()
         ],
         'direction': 'down',
@@ -180,7 +180,7 @@ updatemenus = [{
                 'method': 'update',
                 'args': [{'x': [data[(data[option] == selected_subdistrict) & (data['subdistrict'] == subdistrict)]
                                 ['subdistrict'] for selected_subdistrict in data[option].unique()]},
-                         {'title': f'subdistrict per {option} for {subdistrict}'}]
+                         {'title': f'ข้อมูล {option} จากแขวง {subdistrict}'}]
             } for subdistrict in data['subdistrict'].unique()
         ],
         'direction': 'down',
@@ -197,7 +197,7 @@ updatemenus = [{
                 'method': 'update',
                 'args': [{'x': [data[(data[option] == selected_status) & (data['status'] == status)]
                                 ['status'] for selected_status in data[option].unique()]},
-                         {'title': f'status per {option} for {status}'}]
+                         {'title': f'ข้อมูล {option} สถานะ {status}'}]
             } for status in data['status'].unique()
         ],
         'direction': 'down',
