@@ -69,7 +69,7 @@ st.write(data)
 st.markdown("### ประเภทการร้องเรียนในระบบ Traffy Fondue Map")
 option = st.selectbox(
     'เลือกตัวเลือกการแสดง ?',
-    ('district', 'subdistrict', 'status'))
+    ('word_df','district', 'subdistrict', 'status'))
 st.write('คุณเลือก :', option)
 
 fig = px.scatter_mapbox(
