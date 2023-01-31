@@ -60,7 +60,7 @@ district_dataset = {
 st.title("Data Analytics")
 
 # load data
-data = pd.read_csv("./file.csv")
+data = pd.read_csv("./dataset.csv")
 
 st.markdown("### ข้อมูลการร้องเรียนในระบบ Traffy Fondue Data Table")
 st.write(data)
@@ -187,27 +187,33 @@ fig.update_layout(
 )
 st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("### ประเภทการร้องเรียนในระบบ Traffy Fondue")
+
+st.markdown("### Traffy Fondue Line Chart by word_df")
+word_counts = data['word_df'].value_counts()
 fig = go.Figure()
-fig.add_trace(go.Histogram(x=data['word_df'], name='word_df'))
-fig.add_trace(go.Histogram(x=data['word_token'], name='word_token'))
-fig.add_trace(go.Histogram(x=data['word_emo'], name='word_emo'))
+fig = px.line(word_counts.reset_index(), x='index', y='word_df')
 st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("### ประเภทการร้องเรียนในระบบ Traffy Fondue Line Chart")
+st.markdown("### Traffy Fondue Line Chart by District")
+word_counts = data['district'].value_counts()
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=data['date'], y=data['word_df'], name='word_df'))
+fig = px.line(word_counts.reset_index(), x='index', y='district')
 st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("### ประเภทการร้องเรียนในระบบ Traffy Fondue Scatter Chart")
-fig = px.scatter(data, y=data['word_df'], x=data['date'], color="word_df", symbol="status")
-fig.update_traces(marker_size=10)
+st.markdown("### Traffy Fondue Line Chart by Subdistrict")
+word_counts = data['subdistrict'].value_counts()
+fig = go.Figure()
+fig = px.line(word_counts.reset_index(), x='index', y='subdistrict')
 st.plotly_chart(fig, use_container_width=True)
-        
-to_series =  data['word_df'].squeeze()
 
-data_count = data['word_df'].str.count(to_series)
 
-fig = px.scatter(data, x=data['word_df'], y=data_count,
-	         size=data_count, color="color_word_df", size_max=60, hover_name="word_df")
-st.plotly_chart(fig, use_container_width=True)
+#st.markdown("### Time series of Traffy Fondue")
+#data['date'] = pd.to_datetime(data['date'])
+#df_word = data.set_index('date')
+#fig = px.line(df_word, x=df_word.index, y='word_df')
+#start_date = st.sidebar.date_input("Start date", min_value=df_word.index.min(), max_value=df_word.index.max(), value=df_word.index.min())
+#end_date = st.sidebar.date_input("End date", min_value=df_word.index.min(), max_value=df_word.index.max(), value=df_word.index.max())
+#filtered_df = df_word[(df_word.index >= start_date) & (df_word.index <= end_date)]
+#fig = px.line(filtered_df, x=filtered_df.index, y='word_df')
+
+#st.plotly_chart(fig, use_container_width=True)
